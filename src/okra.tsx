@@ -5,16 +5,28 @@ import {
   buildOkraWidgetWithShortUrl,
 } from './html_strings';
 
+interface Filters {
+  industry_type: string;
+  banks: string[];
+}
+
+interface Guarantors {
+  status: boolean;
+  message: string;
+  number: 3;
+}
+
 export interface okraWidgetOptions {
   clientName: string;
   env: string;
   key: string;
   token: string;
-  products?: string[];
+  products: string[];
   logo: string;
   payment?: boolean;
+  meta?: any;
   color: string;
-  filters?: object;
+  filters?: Filters;
   isCorporate?: boolean;
   showBalance?: boolean;
   geoLocation?: boolean;
@@ -25,7 +37,7 @@ export interface okraWidgetOptions {
   currency?: string;
   widget_success?: string;
   widget_failed?: string;
-  guarantors?: object[];
+  guarantors?: Guarantors;
   exp?: string;
   charge: object | boolean;
   customer?: string;
@@ -36,7 +48,7 @@ export interface OkraWidgetProps {
   okraWidgetOptions?: okraWidgetOptions;
   shortUrl?: string;
   onSuccess: (data: any) => void;
-  onClose: () => void;
+  onClose: (data: any) => void;
   onBeforeClose?: () => void;
   onError: (error: any) => void;
 }
@@ -52,6 +64,16 @@ export class OkraWidget extends React.Component<OkraWidgetProps> {
       onBeforeClose,
       onError,
     } = this.props;
+    const deviceInfo = {
+      deviceName: 'DeviceInfo.deviceName',
+      deviceId: ``,
+      osName: 'DeviceInfo.osName',
+      osVersion: 'DeviceInfo.osVersion',
+      platform: 'DeviceInfo.osName',
+    };
+
+    // console.log(JSON.stringify(deviceInfo));
+    // console.log(this.props.okraWidgetOptions?.filters);
     const handleMessage = (event: WebViewMessageEvent) => {
       const data = JSON.parse(event.nativeEvent.data);
 
@@ -60,7 +82,7 @@ export class OkraWidget extends React.Component<OkraWidgetProps> {
           onSuccess(data.data);
           break;
         case 'option close':
-          onClose();
+          onClose(data.data);
           break;
         case 'option before close':
           if (onBeforeClose) {
@@ -80,8 +102,8 @@ export class OkraWidget extends React.Component<OkraWidgetProps> {
       <WebView
         source={
           useShortUrl
-            ? buildOkraWidgetWithShortUrl({ shortUrl })
-            : buildOkraWidgetWithOptions({ okraWidgetOptions })
+            ? buildOkraWidgetWithShortUrl({ shortUrl, deviceInfo })
+            : buildOkraWidgetWithOptions({ okraWidgetOptions, deviceInfo })
         }
         javaScriptEnabled={true}
         onMessage={handleMessage}

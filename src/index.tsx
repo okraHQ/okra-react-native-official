@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { OkraWidget, okraWidgetOptions } from './okra';
 
+interface Guarantors {
+  status: boolean;
+  message: string;
+  number: 3;
+}
+interface Filters {
+  industry_type: string;
+  banks: string[];
+}
+
 export interface OkraOptionsProps {
   okraOptions: {
     clientName: string;
     env: string;
     key: string;
     token: string;
-    products?: string[];
+    products: string[];
     logo: string;
     payment?: boolean;
+    meta?: any;
     color: string;
-    filters?: object;
+    filters?: Filters;
     isCorporate?: boolean;
     showBalance?: boolean;
     geoLocation?: boolean;
@@ -22,7 +33,7 @@ export interface OkraOptionsProps {
     currency?: string;
     widget_success?: string;
     widget_failed?: string;
-    guarantors?: object[];
+    guarantors?: Guarantors;
     customerId?: string;
     customerBvn?: string;
     customerPhone?: string;
@@ -31,20 +42,20 @@ export interface OkraOptionsProps {
     exp?: string;
     chargeNote?: string;
     chargeType?: string;
-    chargeAmount?: string;
+    chargeAmount?: number;
     chargeCurrency?: string;
   };
   onSuccess: (data: any) => void;
-  onClose: () => void;
-  onBeforeClose?: () => void;
+  onClose: (data: any) => void;
+  onBeforeClose?: (data: any) => void;
   onError: (error: any) => void;
 }
 
 export interface OkraUrlProps {
   shortUrl: string;
   onSuccess: (data: any) => void;
-  onClose: () => void;
-  onBeforeClose?: () => void;
+  onClose: (data: any) => void;
+  onBeforeClose?: (data: any) => void;
   onError: (error: any) => void;
 }
 

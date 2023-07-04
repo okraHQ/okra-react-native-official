@@ -9,27 +9,56 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-
+const banks = [
+  'ecobank-nigeria',
+  'fidelity-bank',
+  'first-bank-of-nigeria',
+  'first-city-monument-bank',
+  'guaranty-trust-bank',
+  'access-bank',
+  'unity-bank',
+  'alat',
+  'polaris-bank',
+  'stanbic-ibtc-bank',
+  'standard-chartered-bank',
+  'sterling-bank',
+  'union-bank-of-nigeria',
+  'united-bank-for-africa',
+  'wema-bank',
+  'rubies-bank',
+  'kuda-bank',
+];
 let okraOptions: OkraOptionsProps = {
   okraOptions: {
-    callback_url: 'https://webhook.site/ded54b3f-f4f5-4fa1-86c3-0def6098fb4d',
-    clientName: 'client',
-    color: '#953ab7',
-    connectMessage: 'Which account do you want to connect with?',
+    clientName: 'clientName',
+    env: 'production-sandbox',
+    key: 'Enter your key here',
+    token: 'Enter your token here',
+    color: '#3AB795',
+    products: ['auth', 'identity', 'balance', 'transactions'],
+    chargeAmount: 100,
+    chargeNote: 'testing',
+    chargeType: 'one-time',
+    chargeCurrency: 'NGN',
+    meta: 'Test Meta',
+    // customerBvn: dotenv.env['bvn']!,
+    logo: 'https://dash.okra.ng/static/media/okra-logo.514fd943.png',
+    limit: 3,
     currency: 'NGN',
-    env: 'production-sandbox', // for sandbox use production-sandbox
-    filters: {
-      banks: ['access-bank', 'guaranty-trust-bank'],
-      industry_type: 'all',
-    },
     isCorporate: false,
-    key: '09147b06-b9f2-5516-8286-743eca44a95d',
-    token: '63d901f3bad20d13e7643fd4',
-    limit: 24,
-    logo: 'https://cdn.okra.ng/images/icon.svg',
-    products: ['auth', 'balance', 'identity', 'transactions'],
-    widget_failed: '',
-    widget_success: 'Your account was successfully linked to Okra, Inc',
+    showBalance: true,
+    geoLocation: true,
+    payment: false,
+    connectMessage: 'Which account do you want to connect with?',
+    callback_url: '',
+    widget_success: 'Your account was successfully linked to SwipeNG',
+    widget_failed: 'An unknown error occurred, please try again.',
+    guarantors: {
+      status: false,
+      message: 'Okra requires you to add guarantors',
+      number: 3,
+    },
+    filters: { industry_type: 'all', banks: banks },
   },
   onError: (error) => {
     console.log(error);
@@ -75,6 +104,7 @@ function HomeScreen({ navigation }) {
     // @ts-ignore
     <View style={styles.container}>
       <Button title="Build With Options" onPress={goToOptions} />
+      {/* eslint-disable-next-line react-native/no-inline-styles */}
       <View style={{ marginVertical: 10 }} />
       <Button title="Build With ShortUrl" onPress={goToShortUrl} />
     </View>
