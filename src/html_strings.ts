@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 
-export const buildOkraWidgetWithShortUrl = ({ shortUrl }: any) => {
+export const buildOkraWidgetWithShortUrl = ({ shortUrl, deviceInfo }: any) => {
   const htmlContent = `
 '''
   <!DOCTYPE html>
@@ -18,6 +18,7 @@ export const buildOkraWidgetWithShortUrl = ({ shortUrl }: any) => {
         function buildWithShortUrl(){
           Okra.buildWithShortUrl({
             short_url: '${shortUrl}',
+            // deviceInfo: '${deviceInfo}'
             onSuccess: function(data){
               let response = {event:'option success', data}
               window.ReactNativeWebView.postMessage(JSON.stringify(response))
@@ -44,7 +45,10 @@ export const buildOkraWidgetWithShortUrl = ({ shortUrl }: any) => {
   return { uri: `data:text/html;base64,${base64Content}` };
 };
 
-export const buildOkraWidgetWithOptions = ({ okraWidgetOptions }: any) => {
+export const buildOkraWidgetWithOptions = ({
+  okraWidgetOptions,
+  deviceInfo,
+}: any) => {
   const htmlContent = `
     '''
     <!DOCTYPE html>
@@ -65,11 +69,12 @@ export const buildOkraWidgetWithOptions = ({ okraWidgetOptions }: any) => {
               env: '${okraWidgetOptions.env}',
               key: '${okraWidgetOptions.key}',
               token: '${okraWidgetOptions.token}',
-              products: '${okraWidgetOptions.products}',
+              products: ${JSON.stringify(okraWidgetOptions.products)},
               logo: '${okraWidgetOptions.logo}',
               payment: ${okraWidgetOptions.payment},
+              meta: '${JSON.stringify(okraWidgetOptions.meta)}',
               color: '${okraWidgetOptions.color}',
-              filter: '${okraWidgetOptions.filters}',
+              filter: "'${okraWidgetOptions.filters}'",
               isCorporate: ${okraWidgetOptions.isCorporate},
               showBalance: ${okraWidgetOptions.showBalance},
               geoLocation: ${okraWidgetOptions.geoLocation},
@@ -80,10 +85,11 @@ export const buildOkraWidgetWithOptions = ({ okraWidgetOptions }: any) => {
               currency: '${okraWidgetOptions.currency}',
               widget_success: '${okraWidgetOptions.widget_success}',
               widget_failed: '${okraWidgetOptions.widget_failed}',
-              guarantors: ${okraWidgetOptions.guarantors},
+              guarantors: "'${okraWidgetOptions.guarantors}'",
               exp: '${okraWidgetOptions.exp}',
               charge: ${okraWidgetOptions.charge},
               customer: ${okraWidgetOptions.customer},
+              // deviceInfo: '${JSON.stringify(deviceInfo)}'
               onSuccess: function(data) {
                 let response = {event:'option success', data}
                 window.ReactNativeWebView.postMessage(JSON.stringify(response))
