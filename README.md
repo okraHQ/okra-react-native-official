@@ -35,6 +35,10 @@ let okraOptions: OkraOptionsProps = {
       banks: ['access-bank', 'guaranty-trust-bank'],
       industry_type: 'all',
     },
+    meta: "Any data type",
+    options: {
+      name: "Client Name"
+    },
     isCorporate: false,
     key: 'Enter Key here',
     token: 'Enter token here',
