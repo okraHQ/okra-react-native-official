@@ -31,7 +31,7 @@ const banks = [
 let okraOptions: OkraOptionsProps = {
   okraOptions: {
     clientName: 'clientName',
-    env: 'production-sandbox',
+    env: 'production', // for sandbox use production-sandbox
     key: 'Enter your key here',
     token: 'Enter your token here',
     color: '#3AB795',
@@ -41,6 +41,7 @@ let okraOptions: OkraOptionsProps = {
     chargeType: 'one-time',
     chargeCurrency: 'NGN',
     meta: 'Test Meta',
+    options: { name: 'TrueSaver' },
     // customerBvn: dotenv.env['bvn']!,
     logo: 'https://dash.okra.ng/static/media/okra-logo.514fd943.png',
     limit: 3,
@@ -75,7 +76,7 @@ let okraOptions: OkraOptionsProps = {
 };
 
 let okraUrl: OkraUrlProps = {
-  shortUrl: 'bc_kWKf2l',
+  shortUrl: 'Enter short Url here',
   onError: (error) => {
     console.log(error);
   },

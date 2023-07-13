@@ -25,6 +25,7 @@ export interface okraWidgetOptions {
   logo: string;
   payment?: boolean;
   meta?: any;
+  options?: object;
   color: string;
   filters?: Filters;
   isCorporate?: boolean;
@@ -100,6 +101,7 @@ export class OkraWidget extends React.Component<OkraWidgetProps> {
     return (
       // @ts-ignore
       <WebView
+        originWhitelist={['*']}
         source={
           useShortUrl
             ? buildOkraWidgetWithShortUrl({ shortUrl, deviceInfo })
