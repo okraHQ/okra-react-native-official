@@ -76,7 +76,7 @@ let okraOptions: OkraOptionsProps = {
 };
 
 let okraUrl: OkraUrlProps = {
-  shortUrl: 'pvtCClZNM',
+  shortUrl: 'Enter short Url here',
   onError: (error) => {
     console.log(error);
   },
