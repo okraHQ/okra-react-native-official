@@ -1,5 +1,3 @@
-import { Buffer } from 'buffer';
-
 export const buildOkraWidgetWithShortUrl = ({ shortUrl, deviceInfo }: any) => {
   const htmlContent = `
 '''
@@ -41,8 +39,8 @@ export const buildOkraWidgetWithShortUrl = ({ shortUrl, deviceInfo }: any) => {
     </body>
   </html>
 ''' `;
-  const base64Content = Buffer.from(htmlContent).toString('base64');
-  return { uri: `data:text/html;base64,${base64Content}` };
+
+  return { html: htmlContent };
 };
 
 export const buildOkraWidgetWithOptions = ({
@@ -72,7 +70,8 @@ export const buildOkraWidgetWithOptions = ({
               products: ${JSON.stringify(okraWidgetOptions.products)},
               logo: '${okraWidgetOptions.logo}',
               payment: ${okraWidgetOptions.payment},
-              meta: '${JSON.stringify(okraWidgetOptions.meta)}',
+              meta: '${okraWidgetOptions.meta}',
+              options: ${JSON.stringify(okraWidgetOptions.options)},
               color: '${okraWidgetOptions.color}',
               filter: "'${okraWidgetOptions.filters}'",
               isCorporate: ${okraWidgetOptions.isCorporate},
@@ -113,6 +112,6 @@ export const buildOkraWidgetWithOptions = ({
     </html>
     '''
   `;
-  const base64Content = Buffer.from(htmlContent).toString('base64');
-  return { uri: `data:text/html;base64,${base64Content}` };
+
+  return { html: htmlContent };
 };

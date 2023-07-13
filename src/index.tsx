@@ -21,6 +21,7 @@ export interface OkraOptionsProps {
     logo: string;
     payment?: boolean;
     meta?: any;
+    options?: object;
     color: string;
     filters?: Filters;
     isCorporate?: boolean;
