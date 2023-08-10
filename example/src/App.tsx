@@ -32,8 +32,8 @@ let okraOptions: OkraOptionsProps = {
   okraOptions: {
     clientName: 'clientName',
     env: 'production', // for sandbox use production-sandbox
-    key: 'eff21aaf-482f-58f4-b24e-7c898696f519',
-    token: '5da6358130a943486f33dced',
+    key: '',
+    token: '',
     color: '#3AB795',
     products: ['auth', 'identity', 'balance', 'transactions'],
     chargeAmount: 100,
