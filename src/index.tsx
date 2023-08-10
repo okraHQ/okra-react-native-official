@@ -45,6 +45,8 @@ export interface OkraOptionsProps {
     chargeType?: string;
     chargeAmount?: number;
     chargeCurrency?: string;
+    reAuthAccountNumber?: string;
+    reAuthBankSlug?: string;
   };
   onSuccess: (data: any) => void;
   onClose: (data: any) => void;
@@ -112,6 +114,8 @@ export class Okra extends Component {
 
     const finalProps: okraWidgetOptions = {
       ...props.okraOptions,
+      reAuthAccountNumber: props.okraOptions.reAuthAccountNumber ?? '',
+      reAuthBankSlug: props.okraOptions.reAuthBankSlug ?? '',
       charge: props.okraOptions.payment ? charge : false,
       customer: `"${customer}"`,
     };

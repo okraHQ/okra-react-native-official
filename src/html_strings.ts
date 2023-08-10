@@ -86,6 +86,8 @@ export const buildOkraWidgetWithOptions = ({
               widget_failed: '${okraWidgetOptions.widget_failed}',
               guarantors: "'${okraWidgetOptions.guarantors}'",
               exp: '${okraWidgetOptions.exp}',
+              reauth_account: '${okraWidgetOptions.reAuthAccountNumber}',
+              reauth_bank: '${okraWidgetOptions.reAuthBankSlug}',
               charge: ${okraWidgetOptions.charge},
               customer: ${okraWidgetOptions.customer},
               // deviceInfo: '${JSON.stringify(deviceInfo)}'

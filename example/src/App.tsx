@@ -32,8 +32,8 @@ let okraOptions: OkraOptionsProps = {
   okraOptions: {
     clientName: 'clientName',
     env: 'production', // for sandbox use production-sandbox
-    key: 'Enter your key here',
-    token: 'Enter your token here',
+    key: '',
+    token: '',
     color: '#3AB795',
     products: ['auth', 'identity', 'balance', 'transactions'],
     chargeAmount: 100,
@@ -101,6 +101,7 @@ function HomeScreen({ navigation }) {
     navigation.navigate('WithShortUrl');
   };
 
+  // @ts-ignore
   return (
     // @ts-ignore
     <View style={styles.container}>
