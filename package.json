@@ -1,7 +1,7 @@
 {
   "name": "okra-react-native-official",
-  "version": "0.1.2",
-  "description": "test",
+  "version": "0.1.3",
+  "description": "This package provides a set of functions for integrating the Okra API into your React Native applications. Okra is a financial technology company that enables seamless access to banking and financial services data through secure APIs.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",

@@ -42,6 +42,8 @@ export interface okraWidgetOptions {
   exp?: string;
   charge: object | boolean;
   customer?: string;
+  reAuthAccountNumber?: string;
+  reAuthBankSlug?: string;
 }
 
 export interface OkraWidgetProps {
