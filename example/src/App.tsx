@@ -101,17 +101,20 @@ function HomeScreen({ navigation }) {
     navigation.navigate('WithShortUrl');
   };
 
-  // @ts-ignore
   return (
-    // @ts-ignore
     <View style={styles.container}>
       <Button title="Build With Options" onPress={goToOptions} />
-      {/* eslint-disable-next-line react-native/no-inline-styles */}
-      <View style={{ marginVertical: 10 }} />
+      <View style={localStyles.margin} />
       <Button title="Build With ShortUrl" onPress={goToShortUrl} />
     </View>
   );
 }
+
+const localStyles = {
+  margin: {
+    marginVertical: 10,
+  },
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -130,7 +133,7 @@ function OkraShortUrlScreen() {
   return Okra.buildWithShortUrl(okraUrl);
 }
 
-export default class App extends Component {
+export default class App extends Component<any, any> {
   render() {
     return (
       <NavigationContainer>
