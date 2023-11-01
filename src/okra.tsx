@@ -1,5 +1,7 @@
 import React from 'react';
 import { WebView, WebViewMessageEvent } from 'react-native-webview';
+import { Platform, StyleSheet, SafeAreaView } from 'react-native';
+
 import {
   buildOkraWidgetWithOptions,
   buildOkraWidgetWithShortUrl,
@@ -102,16 +104,25 @@ export class OkraWidget extends React.Component<OkraWidgetProps> {
 
     return (
       // @ts-ignore
-      <WebView
-        originWhitelist={['*']}
-        source={
-          useShortUrl
-            ? buildOkraWidgetWithShortUrl({ shortUrl, deviceInfo })
-            : buildOkraWidgetWithOptions({ okraWidgetOptions, deviceInfo })
-        }
-        javaScriptEnabled={true}
-        onMessage={handleMessage}
-      />
+      <SafeAreaView style={styles.container}>
+        <WebView
+          originWhitelist={['*']}
+          source={
+            useShortUrl
+              ? buildOkraWidgetWithShortUrl({ shortUrl, deviceInfo })
+              : buildOkraWidgetWithOptions({ okraWidgetOptions, deviceInfo })
+          }
+          javaScriptEnabled={true}
+          onMessage={handleMessage}
+        />
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
+  },
+});
